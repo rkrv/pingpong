@@ -1,0 +1,117 @@
+<!DOCTYPE html>  <html> <head>   <title>ping-pong.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               ping-pong.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <pre><code>Ping-Pong.js 0.1.0
+
+(c) 2012 Mindaugas Bujanauskas, Apollo Music Aps
+Ping-Pong.js may be freely distributed under the MIT license.
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p><strong>Ping-Pong</strong> is a dependency-less pseudo-ping utility written in JavaScript, that allows
+you to easily find out if a certain HTTP server is online.</p>
+
+<p>Sometimes you need to know if your server is alive, before making an AJAX request.
+Or perhaps you're like us in Apollo Music and you need to be able to quickly restore from the
+Internet connection loss without actually having to make faulsy JSON requests?
+Then Ping-Pong is the right tool for you. It allows you to know if the server is
+online by downloading a small image from it.</p>
+
+<p>At Apollo IT, we use it in Audionse.com - our online music solution for businesses. What happens,
+is that sometimes, user's Internet connection goes down and they are not arround to manually refresh
+the page. <strong>Ping-Pong</strong> helps us determine if the user is back online and continue music playback.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span> <span class="p">{</span>
+  </pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h2>Usage</h2>
+
+<p>Using Ping-Pong is as simple as creating a new instance of PingPong object and passing
+<code>success</code> and <code>error</code> callbacks.</p>
+
+<pre><code>var ping = new PingPong({
+  success: function() { alert("We're online!"); },
+  error: function() { alert('Dead server is dead.'); }
+});
+</code></pre>
+
+<p>PingPong constructor takes one argument - <code>options</code> hash.</p>             </td>             <td class="code">               <div class="highlight"><pre>  
+  <span class="nb">window</span><span class="p">.</span><span class="nx">PingPong</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>The <strong>options</strong> hash will usually contain only two properties: <code>success</code> and <code>error</code>.
+However, it is also possible to pass properties for a different image <code>src</code> and a
+boolean value for <code>random</code>, which will (or not) attach a random query in the end of
+image's <strong>src</strong>.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">(</span><span class="nx">options</span> <span class="o">||</span> <span class="kc">null</span><span class="p">);</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>Default options are:</p>
+
+<pre><code>success: function() {},
+error:   function() {},
+src:     '/ping.gif',
+random:  true
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="s1">&#39;/ping.gif&#39;</span><span class="p">;</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">random</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p>Generally, <code>success</code> and <code>error</code> callbacks should be <em>functions</em>. Other types of objects are
+not accepted and will not be used.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">success</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">success</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">success</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">success</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">error</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">error</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">error</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">error</span><span class="p">;</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>You can also pass in a different URL for the image's source. It is defined with
+the <code>src</code> value and it should be a <em>string</em>. The default value for <code>src</code> is <strong>/ping.gif</strong>.
+This was chosen because, according to Photoshop, 1x1px GIF image takes only 43 bytes of space,
+whereas similar 1x1px PNG8 and PNG24 take 124 and 109 bytes accordingly.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">src</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">src</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">src</span><span class="p">;</span>
+        </pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>The last property that can be set is the <code>random</code> of type <em>boolean</em>. It defaults to <code>true</code> to ensure
+that the script always makes a call. However, sometimes you might serve your content with no-cache headers,
+and then you might want to set this property to <code>false</code>. Still, recommended value is <code>true</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">random</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+      </pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>This concludes the <code>options</code> hash and the instatiation is done.</p>             </td>             <td class="code">               <div class="highlight"><pre>      
+    <span class="p">}</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>The <code>onEvent()</code> function is used internally as an abstract between IE and other browsers.
+It takes three arguments: <code>element</code>, <code>event name</code> and a <code>callback</code> function.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">onEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">eventName</span><span class="p">,</span> <span class="nx">callback</span><span class="p">,</span> <span class="kc">false</span><span class="p">);</span>
+      <span class="p">}</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">el</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">el</span><span class="p">.</span><span class="nx">attachEvent</span><span class="p">(</span><span class="s1">&#39;on&#39;</span> <span class="o">+</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">callback</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">};</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-11">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-11">&#182;</a>               </div>               <p>The <code>makeUrl()</code> function is used internally and returns a string containing image source url</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">makeUrl</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">src</span><span class="p">,</span> <span class="nx">random</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="p">(</span><span class="nx">random</span> <span class="o">?</span> <span class="nx">src</span> <span class="o">+</span> <span class="s1">&#39;?r=&#39;</span> <span class="o">+</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span> <span class="o">:</span> <span class="nx">src</span><span class="p">);</span>
+    <span class="p">};</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-12">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-12">&#182;</a>               </div>               <p>Time to create a variable that will hold our Image instance.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">img</span><span class="p">;</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-13">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-13">&#182;</a>               </div>               <p>The following function is used internally and may be used externally as well, so
+that if you feel like it, you could do more pings with the same PingPong object instance.
+Simply call <code>pong</code> method on you instance like so:</p>
+
+<pre><code>var ping = new PingPong(options);
+ping.pong();
+</code></pre>
+
+<p>This method accepts optional arguments for image's <code>src</code> and <code>random</code> values via hash object.
+Beware, that if you pass new values for these attributes, they will be set as new defaults and
+will be used when you call this method next time without any options.</p>
+
+<pre><code>ping.pong({ random: true });
+</code></pre>
+
+<p>These values default to:</p>
+
+<pre><code>src: this.src,
+random: this.random
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">pong</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span> <span class="o">!==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="nx">options</span><span class="p">.</span><span class="nx">src</span> <span class="o">&amp;&amp;</span> <span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">src</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">src</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">random</span> <span class="o">!=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span><span class="p">)</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">random</span> <span class="o">=</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span><span class="p">;</span>
+      <span class="p">}</span>
+      
+      <span class="nx">img</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+      <span class="nx">img</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Image</span><span class="p">();</span>
+      
+      <span class="nx">onEvent</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="s1">&#39;load&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">success</span><span class="p">);</span>
+      <span class="nx">onEvent</span><span class="p">(</span><span class="nx">img</span><span class="p">,</span> <span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">error</span><span class="p">);</span>
+      
+      <span class="nx">img</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">makeUrl</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">src</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">random</span><span class="p">);</span>
+    <span class="p">};</span>
+    </pre></div>             </td>           </tr>                               <tr id="section-14">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>               <p>This is it! At this point we'll simply call <code>this.pong()</code> and start all the magic.
+So long and thanks for all the fish!</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="k">this</span><span class="p">.</span><span class="nx">pong</span><span class="p">();</span>
+    
+  <span class="p">};</span>
+  
+<span class="p">})(</span><span class="nb">window</span><span class="p">);</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
