@@ -7,13 +7,13 @@ you to easily find out if a certain HTTP server is online.</p>
 
 <p>Sometimes you need to know if your server is alive, before making an AJAX request.
 Or perhaps you're like us in Apollo Music and you need to be able to quickly recover from the
-Internet connection loss without actually having to make faulty JSON requests?
+Internet connection loss without actually having to make faulsy JSON requests?
 Then Ping-Pong is the right tool for you. It allows you to know if the server is
 online by downloading a small image from it.</p>
 
 <p>At Apollo IT, we use it in Audionse.com - our online music solution for businesses. What happens,
-is that sometimes, user's Internet connection goes down and they are not around to manually refresh
-the page. <strong>Ping-Pong</strong> helps us determine if the user is back online so we can continue music playback.</p>
+is that sometimes, user's Internet connection goes down and they are not arround to manually refresh
+the page. <strong>Ping-Pong</strong> helps us determine if the user is back online and continue music playback.</p>
 
 <p>Read more on our <a href="https://github.com/rkrv/pingpong">GitHub page</a>.</p>
 
@@ -67,7 +67,7 @@ whereas similar 1x1px PNG8 and PNG24 take 124 and 109 bytes accordingly.</p>    
 that the script always makes a call. However, sometimes you might serve your content with no-cache headers,
 and then you might want to set this property to <code>false</code>. Still, recommended value is <code>true</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span> <span class="o">===</span> <span class="s1">&#39;boolean&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">options</span><span class="p">.</span><span class="nx">random</span> <span class="o">===</span> <span class="kc">false</span><span class="p">)</span>
         <span class="k">this</span><span class="p">.</span><span class="nx">random</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-      </pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>This concludes the <code>options</code> hash and the instantiation is done.</p>             </td>             <td class="code">               <div class="highlight"><pre>      
+      </pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>This concludes the <code>options</code> hash and the instatiation is done.</p>             </td>             <td class="code">               <div class="highlight"><pre>      
     <span class="p">}</span>
     </pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>The <code>onEvent()</code> function is used internally as an abstract between IE and other browsers.
 It takes three arguments: <code>element</code>, <code>event name</code> and a <code>callback</code> function.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">onEvent</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">el</span><span class="p">,</span> <span class="nx">eventName</span><span class="p">,</span> <span class="nx">callback</span><span class="p">)</span> <span class="p">{</span>
