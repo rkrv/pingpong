@@ -9,7 +9,7 @@
 // you to easily find out if a certain HTTP server is online.
 //
 // Sometimes you need to know if your server is alive, before making an AJAX request.
-// Or perhaps you're like us in Apollo Music and you need to be able to quickly restore from the
+// Or perhaps you're like us in Apollo Music and you need to be able to quickly recover from the
 // Internet connection loss without actually having to make faulsy JSON requests?
 // Then Ping-Pong is the right tool for you. It allows you to know if the server is
 // online by downloading a small image from it.
