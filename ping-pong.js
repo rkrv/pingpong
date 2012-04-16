@@ -20,6 +20,12 @@
 //
 // Read more on our [GitHub page](https://github.com/rkrv/pingpong).
 //
+// Downloads:
+// 
+// * [Minified](https://raw.github.com/rkrv/pingpong/master/ping-pong.min.js)
+// * [Commented](https://raw.github.com/rkrv/pingpong/master/ping-pong.js)
+// * [Full package](https://github.com/downloads/rkrv/pingpong/Ping-Pong.js.zip)
+//
 
 ;(function(window) {
   
