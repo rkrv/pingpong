@@ -10,13 +10,13 @@
 //
 // Sometimes you need to know if your server is alive, before making an AJAX request.
 // Or perhaps you're like us in Apollo Music and you need to be able to quickly recover from the
-// Internet connection loss without actually having to make faulsy JSON requests?
+// Internet connection loss without actually having to make faulty JSON requests?
 // Then Ping-Pong is the right tool for you. It allows you to know if the server is
 // online by downloading a small image from it.
 //
 // At Apollo IT, we use it in Audionse.com - our online music solution for businesses. What happens,
-// is that sometimes, user's Internet connection goes down and they are not arround to manually refresh
-// the page. **Ping-Pong** helps us determine if the user is back online and continue music playback.
+// is that sometimes, user's Internet connection goes down and they are not around to manually refresh
+// the page. **Ping-Pong** helps us determine if the user is back online so we can continue music playback.
 //
 // Read more on our [GitHub page](https://github.com/rkrv/pingpong).
 //
@@ -83,7 +83,7 @@
       if (typeof options.random === 'boolean' && options.random === false)
         this.random = false;
       
-      // This concludes the `options` hash and the instatiation is done.
+      // This concludes the `options` hash and the instantiation is done.
       
     }
     
