@@ -7,6 +7,8 @@ Sometimes you need to know if your server is alive, before making an AJAX reques
 
 At Apollo IT, we use it in Audionse.com - our online music solution for businesses. What happens, is that sometimes, the user's Internet connection goes down and they are not around to manually refresh the page. **Ping-Pong** helps us determine if the user is back online and continue music playback.
 
+Tested in IE6-9, Chrome, Firefox, Safari, Opera.
+
 
 
 Why & how
