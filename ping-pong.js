@@ -55,11 +55,15 @@
     //     success: function() {},
     //     error:   function() {},
     //     src:     '/ping.gif',
-    //     random:  true
+    //     random:  true,
+    //     retries:  0,
+    //     retryDelay:  1000
     this.success = function() {};
     this.error = function() {};
     this.src = '/ping.gif';
     this.random = true;
+    this.retries = 0;
+    this.retryDelay = 1000;
     
     if (options) {
       
@@ -76,12 +80,21 @@
       // whereas similar 1x1px PNG8 and PNG24 take 124 and 109 bytes accordingly.
       if (options.src && typeof options.src === 'string')
         this.src = options.src;
-        
+
+      // Number of retries before calling error callback. Must be an integer and greater than 0.
+      if (typeof options.retries === 'number' && options.retries % 1 === 0 && options.retries > 0)
+        this.retries = options.retries;
+
+      // Time in milliseconds before retrying. Must be an integer and greater than 0.
+      if (typeof options.retryDelay === 'number' && options.retryDelay % 1 === 0 && options.retryDelay > 0)
+        this.retryDelay = options.retryDelay;
+
       // The last property that can be set is the `random` of type _boolean_. It defaults to `true` to ensure
       // that the script always makes a call. However, sometimes you might serve your content with no-cache headers,
       // and then you might want to set this property to `false`. Still, recommended value is `true`.
       if (typeof options.random === 'boolean' && options.random === false)
         this.random = false;
+
       
       // This concludes the `options` hash and the instantiation is done.
       
@@ -97,7 +110,30 @@
         el.attachEvent('on' + eventName, callback);
       }
     };
-    
+
+    // This is a helper class for handling retries.
+    var RetriesHandler = function(retries, retryDelay, error, ping) {
+        var self = this;
+
+        this.retries = retries;
+        this.retryDelay = retryDelay;
+        this.error = error;
+        this.ping = ping;
+
+        this.onError = function() {
+            if (self.retries-- > 0) {
+                setTimeout(function() {
+                    self.ping.pong();
+                }, self.retryDelay);
+            } else {
+                self.error();
+            }
+        };
+    };
+
+    // Create RetriesHandler instance.
+    var retriesHandler = new RetriesHandler(this.retries, this.retryDelay, this.error, this);
+
     // The `makeUrl()` function is used internally and returns a string containing image source url
     var makeUrl = function(src, random) {
       return (random ? src + '?r=' + Math.random() : src);
@@ -127,16 +163,16 @@
     this.pong = function(options) {
       if (typeof options !== 'undefined') {
         if (options.src && typeof options.src === 'string')
-          this.src = options.src;
+            this.src = options.src;
         if (typeof options.random === 'boolean' && this.random != options.random)
-          this.random = options.random;
+            this.random = options.random;
       }
       
       img = null;
       img = new Image();
-      
+
       onEvent(img, 'load', this.success);
-      onEvent(img, 'error', this.error);
+      onEvent(img, 'error', retriesHandler.onError);
       
       img.src = makeUrl(this.src, this.random);
     };
