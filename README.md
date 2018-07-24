@@ -88,4 +88,4 @@ Contribute
 
 Contributions are welcome in the form of feature suggestions and development, bug reporting and fixing, testing, documentation writing and, giving high-fives to the [author](http://www.twitter.com/rkrv). List of [all contributors](https://github.com/rkrv/pingpong/contributors) can be found here.
 
-If you develop new code or fix current issues, remember to write tests and documentation. We use [Jasmine](http://pivotal.github.com/jasmine/) for testing and document code with [Docco](http://jashkenas.github.com/docco/).
+If you develop new code or fix current issues, remember to write tests and documentation. We use [Jasmine](https://jasmine.github.io/) for testing and document code with [Docco](http://jashkenas.github.com/docco/).
